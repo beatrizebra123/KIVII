@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>KIVII — Coming Very Very Soon</title>
+  <meta
+    name="description"
+    content="KIVII is under construction. Coming very very soon."
+  />
+
+  <link rel="icon" type="image/png" href="assets/kivii-mascot.png" />
+
+  <style>
+    :root {
+      --brown: #311A16;
+      --lime: #CCFF00;
+      --cream: #FFF8E8;
+      --pink: #FF9FCB;
+      --blue: #86C8FF;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html,
+    body {
+      width: 100%;
+      min-height: 100%;
+    }
+
+    body {
+      min-height: 100svh;
+      overflow-x: hidden;
+      background:
+        radial-gradient(circle at 14% 18%, rgba(204, 255, 0, 0.07), transparent 18rem),
+        radial-gradient(circle at 88% 78%, rgba(134, 200, 255, 0.07), transparent 18rem),
+        var(--brown);
+      color: var(--cream);
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    .page {
+      position: relative;
+      min-height: 100svh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+      padding: 34px 32px 28px;
+      isolation: isolate;
+    }
+
+    .page::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      z-index: -1;
+      opacity: 0.18;
+      background-image:
+        linear-gradient(rgba(255,255,255,.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.025) 1px, transparent 1px);
+      background-size: 28px 28px;
+      mask-image: linear-gradient(to bottom, black, transparent 80%);
+    }
+
+    .topbar {
+      width: min(1180px, 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .logo {
+      width: clamp(190px, 24vw, 360px);
+      height: auto;
+      display: block;
+    }
+
+    .hero {
+      width: min(1050px, 100%);
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(260px, 390px);
+      align-items: center;
+      gap: clamp(28px, 6vw, 80px);
+      padding: 30px 0;
+    }
+
+    .copy {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      margin-bottom: 18px;
+      border: 2px solid var(--lime);
+      border-radius: 999px;
+      padding: 9px 14px 8px;
+      color: var(--lime);
+      font-size: 12px;
+      font-weight: 900;
+      letter-spacing: 0.13em;
+      text-transform: uppercase;
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--lime);
+      box-shadow: 0 0 0 4px rgba(204,255,0,.14);
+      animation: blink 1.6s ease-in-out infinite;
+    }
+
+    h1 {
+      max-width: 760px;
+      color: var(--lime);
+      font-size: clamp(62px, 9vw, 138px);
+      line-height: 0.79;
+      letter-spacing: -0.075em;
+      font-weight: 950;
+      text-transform: uppercase;
+    }
+
+    .soon {
+      margin-top: 24px;
+      font-size: clamp(22px, 3vw, 44px);
+      line-height: 0.98;
+      letter-spacing: -0.045em;
+      font-weight: 900;
+      text-transform: uppercase;
+    }
+
+    .soon span {
+      color: var(--pink);
+    }
+
+    .sub {
+      margin-top: 10px;
+      color: rgba(255, 248, 232, .72);
+      font-size: clamp(14px, 1.3vw, 18px);
+      font-weight: 700;
+      letter-spacing: 0.02em;
+    }
+
+    .mascot-wrap {
+      position: relative;
+      display: grid;
+      place-items: center;
+    }
+
+    .mascot-wrap::before {
+      content: "";
+      position: absolute;
+      width: 80%;
+      aspect-ratio: 1;
+      border: 2px solid var(--lime);
+      border-radius: 50%;
+      opacity: .45;
+      transform: rotate(-7deg);
+    }
+
+    .mascot-wrap::after {
+      content: "";
+      position: absolute;
+      width: 88%;
+      height: 18%;
+      bottom: 3%;
+      border-radius: 50%;
+      background: rgba(0,0,0,.22);
+      filter: blur(16px);
+      z-index: -1;
+    }
+
+    .mascot {
+      width: min(100%, 390px);
+      height: auto;
+      display: block;
+      animation: float 4.2s ease-in-out infinite;
+      filter: drop-shadow(0 16px 24px rgba(0,0,0,.16));
+    }
+
+    .footer {
+      width: min(1180px, 100%);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      padding-top: 6px;
+    }
+
+    .instagram {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      text-decoration: none;
+      color: var(--brown);
+      background: var(--lime);
+      border: 2px solid var(--lime);
+      border-radius: 999px;
+      padding: 10px 15px 9px;
+      font-size: 13px;
+      font-weight: 900;
+      letter-spacing: .03em;
+      transition: transform .18s ease, background .18s ease, color .18s ease;
+    }
+
+    .instagram:hover {
+      transform: translateY(-2px) rotate(-1deg);
+      background: transparent;
+      color: var(--lime);
+    }
+
+    .mini {
+      color: rgba(255,248,232,.5);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0) rotate(-1deg); }
+      50% { transform: translateY(-12px) rotate(1deg); }
+    }
+
+    @keyframes blink {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: .45; transform: scale(.82); }
+    }
+
+    @media (max-width: 760px) {
+      .page {
+        padding: 24px 20px 22px;
+      }
+
+      .hero {
+        grid-template-columns: 1fr;
+        text-align: center;
+        gap: 24px;
+        padding: 32px 0 18px;
+      }
+
+      .copy {
+        align-items: center;
+      }
+
+      h1 {
+        font-size: clamp(58px, 19vw, 94px);
+      }
+
+      .soon {
+        max-width: 320px;
+      }
+
+      .mascot {
+        width: min(62vw, 275px);
+      }
+
+      .mascot-wrap::before {
+        width: 64%;
+      }
+
+      .footer {
+        flex-direction: column;
+        justify-content: center;
+        gap: 12px;
+      }
+
+      .mini {
+        order: 2;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .mascot,
+      .eyebrow::before {
+        animation: none;
+      }
+
+      .instagram {
+        transition: none;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <main class="page">
+    <header class="topbar">
+      <img
+        class="logo"
+        src="assets/kivii-logo.png"
+        alt="KIVII"
+      />
+    </header>
+
+    <section class="hero">
+      <div class="copy">
+        <div class="eyebrow">Currently cooking</div>
+
+        <h1>Under<br>Construction</h1>
+
+        <p class="soon">
+          Coming very, very soon<span>!</span>
+        </p>
+
+        <p class="sub">Stay tuned. We’re almost ready.</p>
+      </div>
+
+      <div class="mascot-wrap" aria-hidden="true">
+        <img
+          class="mascot"
+          src="assets/kivii-mascot.png"
+          alt=""
+        />
+      </div>
+    </section>
+
+    <footer class="footer">
+      <span class="mini">KIVII © 2026</span>
+
+      <a
+        class="instagram"
+        href="https://www.instagram.com/kivii.app/"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        @kivii.app ↗
+      </a>
+    </footer>
+  </main>
+</body>
+</html>
