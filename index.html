@@ -3,20 +3,27 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
   <title>KIVII — Coming Soon</title>
   <meta
     name="description"
-    content="KIVII is under construction. Coming very very soon."
+    content="The solution for freelancers is coming very, very soon."
   />
+
   <link rel="icon" type="image/png" href="assets/kivii-mascot.png" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,500;0,600;1,500;1,600&display=swap"
+    rel="stylesheet"
+  >
 
   <style>
     :root {
       --brown: #311A16;
       --lime: #CCFF00;
-      --cream: #FFF8E8;
-      --pink: #FF9FCB;
-      --line: rgba(204, 255, 0, 0.18);
+      --cream: #F8F5F0;
     }
 
     * {
@@ -33,254 +40,254 @@
 
     body {
       min-height: 100svh;
-      overflow-x: hidden;
-      background:
-        radial-gradient(circle at 15% 20%, rgba(204,255,0,0.08), transparent 24rem),
-        radial-gradient(circle at 80% 80%, rgba(255,255,255,0.04), transparent 24rem),
-        var(--brown);
-      color: var(--cream);
-      font-family: Arial, Helvetica, sans-serif;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 24px;
+      background: var(--brown);
+      color: var(--lime);
+      font-family: "Montserrat", Arial, sans-serif;
     }
 
     .page {
-      width: min(920px, 100%);
+      min-height: 100svh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 70px 24px;
+    }
+
+    .content {
+      width: min(1040px, 100%);
       display: flex;
       flex-direction: column;
       align-items: center;
       text-align: center;
-      gap: 20px;
-      position: relative;
     }
 
-    .page::before {
-      content: "";
-      position: absolute;
-      inset: -30px;
-      pointer-events: none;
-      opacity: 0.12;
-      background-image:
-        linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
-      background-size: 30px 30px;
-      z-index: -1;
+    .intro {
+      max-width: 980px;
+      margin-bottom: 92px;
+      font-size: clamp(16px, 1.45vw, 20px);
+      line-height: 1.5;
+      font-weight: 500;
+      font-style: italic;
+      letter-spacing: -0.02em;
+      white-space: nowrap;
     }
 
     .logo {
-      width: clamp(110px, 12vw, 170px);
+      width: clamp(62px, 6.6vw, 88px);
       height: auto;
       display: block;
-      margin-bottom: 10px;
+      margin-bottom: 42px;
     }
 
-    .screen {
-      width: min(100%, 760px);
-      border: 2px solid var(--line);
-      padding: clamp(26px, 4vw, 42px);
-      background: rgba(0, 0, 0, 0.08);
-      box-shadow: inset 0 0 0 1px rgba(204,255,0,0.08);
-    }
-
-    .mini-label {
-      font-family: "Courier New", Courier, monospace;
-      font-size: 14px;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-      color: rgba(255, 248, 232, 0.82);
-      margin-bottom: 16px;
-    }
-
-    h1 {
-      color: var(--lime);
-      font-size: clamp(46px, 9vw, 96px);
-      line-height: 0.9;
-      letter-spacing: -0.06em;
-      font-weight: 900;
-      text-transform: uppercase;
-      margin-bottom: 16px;
-    }
-
-    .soon {
-      font-size: clamp(22px, 3.2vw, 42px);
-      line-height: 0.98;
-      letter-spacing: -0.04em;
-      font-weight: 900;
-      text-transform: uppercase;
-      margin-bottom: 18px;
-    }
-
-    .soon .pink {
-      color: var(--pink);
-    }
-
-    .loading-block {
-      width: min(420px, 100%);
-      margin: 0 auto 14px;
-    }
-
-    .loading-text {
-      font-family: "Courier New", Courier, monospace;
-      font-size: 13px;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: rgba(255, 248, 232, 0.78);
-      margin-bottom: 8px;
+    .loading-wrap {
+      width: min(245px, 72vw);
+      margin-bottom: 66px;
     }
 
     .loading-bar {
+      position: relative;
       width: 100%;
-      height: 22px;
-      border: 2px solid var(--lime);
-      padding: 3px;
-      background: rgba(0, 0, 0, 0.18);
+      height: 30px;
+      border: 4px solid var(--lime);
+      border-radius: 999px;
       overflow: hidden;
+      background: var(--cream);
     }
 
     .loading-fill {
-      height: 100%;
-      width: 48%;
-      background:
-        repeating-linear-gradient(
-          90deg,
-          var(--lime) 0 12px,
-          rgba(49, 26, 22, 0.7) 12px 16px
-        );
-      animation: loadingMove 2s linear infinite;
+      position: absolute;
+      inset: 0 auto 0 0;
+      width: 56%;
+      background: var(--lime);
+      animation: loadingPulse 2.2s ease-in-out infinite;
     }
 
-    .sub {
-      font-size: clamp(14px, 1.4vw, 18px);
-      color: rgba(255, 248, 232, 0.78);
-      font-weight: 700;
-      letter-spacing: 0.04em;
-      text-transform: uppercase;
+    .loading-text {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      padding-left: 15px;
+      z-index: 2;
+      color: var(--brown);
+      font-size: 10px;
+      line-height: 1;
+      font-weight: 500;
+      letter-spacing: -0.01em;
+      white-space: nowrap;
+      pointer-events: none;
+    }
+
+    .date {
+      margin-bottom: 74px;
+      font-size: clamp(17px, 1.65vw, 21px);
+      line-height: 1;
+      font-weight: 500;
+      letter-spacing: -0.03em;
+    }
+
+    .mascot-wrap {
+      position: relative;
+      width: clamp(42px, 4.2vw, 56px);
+      aspect-ratio: 1 / 1;
+      margin-bottom: 50px;
+      animation: tinyFloat 3.5s ease-in-out infinite;
     }
 
     .mascot {
-      width: clamp(110px, 16vw, 170px);
-      height: auto;
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
       display: block;
-      margin-top: 6px;
-      animation: float 3.8s ease-in-out infinite;
-      filter: drop-shadow(0 10px 18px rgba(0,0,0,0.22));
+      transition: opacity 0.2s ease;
+      user-select: none;
+      -webkit-user-drag: none;
+    }
+
+    .mascot-default {
+      opacity: 1;
+    }
+
+    .mascot-hover {
+      opacity: 0;
+    }
+
+    .mascot-wrap:hover .mascot-default {
+      opacity: 0;
+    }
+
+    .mascot-wrap:hover .mascot-hover {
+      opacity: 1;
     }
 
     .instagram {
-      margin-top: 6px;
-      display: inline-block;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 42px;
+      padding: 0 22px;
+      border-radius: 999px;
+      background: var(--lime);
+      color: var(--brown);
       text-decoration: none;
-      color: var(--lime);
       font-size: 14px;
-      font-weight: 900;
-      letter-spacing: 0.08em;
+      font-weight: 600;
+      letter-spacing: -0.02em;
       text-transform: uppercase;
-      border-bottom: 1px solid rgba(204,255,0,0.45);
-      padding-bottom: 2px;
-      transition: opacity 0.2s ease, transform 0.2s ease;
+      transition: transform 0.18s ease, opacity 0.18s ease;
     }
 
     .instagram:hover {
-      opacity: 0.8;
-      transform: translateY(-1px);
+      transform: translateY(-2px);
+      opacity: 0.9;
     }
 
-    @keyframes loadingMove {
+    @keyframes loadingPulse {
       0% {
-        transform: translateX(-30%);
+        width: 42%;
+      }
+      50% {
+        width: 66%;
       }
       100% {
-        transform: translateX(110%);
+        width: 42%;
       }
     }
 
-    @keyframes float {
+    @keyframes tinyFloat {
       0%, 100% {
         transform: translateY(0);
       }
       50% {
-        transform: translateY(-8px);
+        transform: translateY(-5px);
       }
     }
 
-    @media (max-width: 640px) {
-      body {
-        padding: 18px;
+    @media (max-width: 760px) {
+      .page {
+        padding: 44px 20px;
       }
 
-      .screen {
-        padding: 24px 18px;
+      .intro {
+        white-space: normal;
+        max-width: 440px;
+        margin-bottom: 66px;
       }
 
-      h1 {
-        font-size: clamp(42px, 14vw, 72px);
+      .logo {
+        margin-bottom: 34px;
       }
 
-      .soon {
-        font-size: clamp(20px, 7vw, 32px);
+      .loading-wrap {
+        margin-bottom: 50px;
       }
 
-      .loading-bar {
-        height: 20px;
+      .date {
+        margin-bottom: 56px;
       }
 
-      .mini-label,
-      .loading-text {
-        font-size: 12px;
+      .mascot-wrap {
+        margin-bottom: 40px;
       }
     }
 
     @media (prefers-reduced-motion: reduce) {
       .loading-fill,
-      .mascot {
+      .mascot-wrap {
         animation: none;
       }
     }
   </style>
 </head>
+
 <body>
   <main class="page">
-    <img
-      class="logo"
-      src="assets/kivii-logo.png"
-      alt="KIVII"
-    />
-
-    <section class="screen">
-      <div class="mini-label">CURRENTLY COOKING</div>
-
-      <h1>UNDER<br>CONSTRUCTION</h1>
-
-      <p class="soon">
-        COMING VERY, VERY SOON<span class="pink">!</span>
+    <section class="content">
+      <p class="intro">
+        The solution for freelancers is coming very, very soon. You might want to get ready.
       </p>
 
-      <div class="loading-block">
-        <div class="loading-text">Loading...</div>
+      <img
+        class="logo"
+        src="assets/kivii-logo.png"
+        alt="KIVII"
+      />
+
+      <div class="loading-wrap">
         <div class="loading-bar">
           <div class="loading-fill"></div>
+          <div class="loading-text">Under construction...</div>
         </div>
       </div>
 
-      <p class="sub">STAY TOONED</p>
+      <p class="date">Early 2027</p>
+
+      <div class="mascot-wrap">
+        <img
+          class="mascot mascot-default"
+          src="assets/kivii-mascot.png"
+          alt="KIVII mascot"
+        />
+
+        <img
+          class="mascot mascot-hover"
+          src="assets/kivii-mascot-hover.png"
+          alt="KIVII mascot smiling"
+        />
+      </div>
+
+      <a
+        class="instagram"
+        href="https://www.instagram.com/kivii.app/"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        @KIVII.APP
+      </a>
     </section>
-
-    <img
-      class="mascot"
-      src="assets/kivii-mascot.png"
-      alt="KIVII mascot"
-    />
-
-    <a
-      class="instagram"
-      href="https://www.instagram.com/kivii.app/"
-      target="_blank"
-      rel="noopener noreferrer"
-    >
-      @kivii.app
-    </a>
   </main>
 </body>
 </html>
